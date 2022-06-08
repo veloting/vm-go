@@ -24,7 +24,6 @@ func ToMemBytes(data []byte) []byte {
 }
 
 func main() {
-	fmt.Println(ToMemBytes([]byte{0x8a, 0}))
 	flag.Parse()
 	if *addr == 0 || *pid == 0 {
 		flag.Usage()
@@ -36,7 +35,7 @@ func main() {
 	check(err)
 	_, err = f.Seek(int64(*addr), 0)
 	check(err)
-	nop := ToMemBytes([]byte{0x8a, 0})
+	nop := ToMemBytes([]byte{0x80, 0x89})
 	f.Write(nop)
 	return
 }
